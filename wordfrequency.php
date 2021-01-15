@@ -1,15 +1,20 @@
 <?php
 /*
-Plugin Name: wordfrequency
+Plugin Name: WordFrequency
 Plugin URI: 
-Description: The wordfrequency plugin is to count the words' frequencies of a post. It's helpful to find keywords of the post.
-Version: 1.0
+Description: The WordFrequency plugin is to count the words' frequencies of a post. It's helpful to find keywords of the post.
+Version: 0.1
 Author: Jiaxin Li
 Author URI: 
 */
 
+// Execute set_options() when activating the plugin 
+register_activation_hook(__FILE__,'set_options');
+
+require_once(dirname(__FILE__).'/setoptions.php'); 
 	
 function count_words () {
+	    
     	global $post;
 		// remove tags
     	$content = strip_tags($post->post_content); 
@@ -34,21 +39,31 @@ function count_words () {
 		}
 		// sort descending according to the frequency
 		arsort($freqarr);
-		echo '<p>Total number of words is: '.$wordscount.'</p>';
-		echo '<p>The frequency of words is: '.'</p>';
-		$maxnum = 4;
-		$minfreq = 1;
+		
+		// get the option values
+		$maxnum = get_option('MaxNumber');
+		$minfreq = get_option('Frequency');
+		$fontsize = get_option('FontSize');
+		$fontcolor = get_option('FontColor');
+		
+		// show words number and frequencies
+		echo '<div id="wordFreqInfo"  style="margin-left:10px">';
+		echo '<p><font size="'.$fontsize.'" color="'.$fontcolor.'">Total number of words is: '.$wordscount.'</font></p>';
+		echo '<p><font size="'.$fontsize.'" color="'.$fontcolor.'">The frequencies of words are: '.'</font></p>';
+		
 		$shownum = 0;
 		foreach($freqarr as $word=>$fre) {
 			$shownum++;
 			// only show words and frequencies that meet the conditions
-			if (($fre > $minfreq) && ($shownum <= $maxnum)) {
-				echo '"' . $word . '": ' . $fre;
-                echo "<br>";
+			if (($fre >= $minfreq) && ($shownum <= $maxnum)) {
+				echo '<font size="'.$fontsize.'" color="'.$fontcolor.'">' . $word . '": ' . $fre."</font>;&nbsp&nbsp";
 			}
         }
+		echo '</div>';
     }
 
 add_action( 'wp_head', 'count_words' );
 
+// Execute unset_options() when deactivating the plugin 
+register_deactivation_hook(__FILE__,'unset_options');
 ?>

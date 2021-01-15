@@ -24,5 +24,8 @@ To upload the SendGrid Plugin .ZIP file:
 
 == Changelog ==
 
+= 0.2 =
+* Add four options in the administration panel: minimal frequency for showing, Maximal words number font size and font color.
+
 = 0.1 =
 * Intial version of plugin to display the frequency of all words on the top of page without any option.
