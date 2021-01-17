@@ -24,6 +24,11 @@ To upload the SendGrid Plugin .ZIP file:
 
 == Changelog ==
 
+= 1.0 =
+* Add a new option allow to enbale/disbale counting common words, such as is, are, it.
+* Improve the display of count result.
+* Fix the bugs: it load default values instead of saved values of options when opening administration panel.
+
 = 0.2 =
 * Add four options in the administration panel: minimal frequency for showing, Maximal words number font size and font color.
 
