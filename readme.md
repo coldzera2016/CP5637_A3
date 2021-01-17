@@ -12,7 +12,8 @@ Description
 Installation
 
     Requirements:PHP version >= 5.6 and <= 7.1. To upload the SendGrid Plugin .ZIP file:
-    Upload the WordPress Word Frequency Plugin to the /wp-contents/plugins/ folder.Activate the plugin from the "Plugins" menu in WordPress.
+    Upload the WordPress Word Frequency Plugin to the /wp-contents/plugins/ folder.
+    Activate the plugin from the "Plugins" menu in WordPress.
     
 Changelog
 
